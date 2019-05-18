@@ -12,6 +12,7 @@ public class CashierDto {
 	private String firstName;
 	private String lastname;
 	private String comments;
+	private int state;
 	
 	private Set<Taking> takings = new HashSet<>();
 
@@ -53,6 +54,14 @@ public class CashierDto {
 
 	public void setTakings(Set<Taking> takings) {
 		this.takings = takings;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 	public CashierDto() {

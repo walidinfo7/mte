@@ -6,4 +6,5 @@ import com.wf.mte.dto.CashierDto;
 
 public interface IcashierServices {
 	public List<CashierDto> findAll();
+	public CashierDto addCashier (CashierDto cashierDto);
 }

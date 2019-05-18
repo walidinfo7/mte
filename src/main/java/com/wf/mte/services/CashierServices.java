@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.wf.mte.dao.ICashierDao;
 import com.wf.mte.dto.CashierDto;
 import com.wf.mte.entities.Cashier;
+import org.springframework.beans.BeanUtils;
 
 @Service
 public class CashierServices implements IcashierServices {
@@ -18,18 +19,30 @@ public class CashierServices implements IcashierServices {
 
 	@Override
 	public List<CashierDto> findAll() {
-		
+
 		List<Cashier> listCashier = cashierdao.findAll();
-		List<CashierDto> ret=transCashierToDto(listCashier);
+		List<CashierDto> ret = transCashierToDto(listCashier);
 		return ret;
 	}
 
-	
 	private List<CashierDto> transCashierToDto(List<Cashier> cashiers) {
 		List<CashierDto> ret = new ArrayList<>();
 		for (Cashier c : cashiers) {
-			ret.add(new CashierDto(c));
+			CashierDto cashierDto = new CashierDto();
+			BeanUtils.copyProperties(c, cashierDto);
+			ret.add(cashierDto);
 		}
 		return ret;
+	}
+
+	@Override
+	public CashierDto addCashier(CashierDto cashierDto) {
+
+		Cashier cashier = new Cashier();
+		BeanUtils.copyProperties(cashierDto, cashier);
+		Cashier result = cashierdao.save(cashier);
+		BeanUtils.copyProperties(result, cashierDto);
+		return cashierDto;
+
 	}
 }

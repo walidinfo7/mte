@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wf.mte.dto.CashierDto;
@@ -22,4 +24,10 @@ public class CashierManagementWebService {
 		return cashierServices.findAll();
 	}
 	
+	@PostMapping("/api/cashiers/add")
+	@ResponseBody
+	public CashierDto addcashier(@RequestBody CashierDto cashierDto){
+		CashierDto result = cashierServices.addCashier(cashierDto);
+		return cashierDto;
+	}
 }
