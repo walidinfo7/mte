@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import org.hibernate.annotations.Proxy;
+
 @Entity
 public class TakingTypeAmount {
 

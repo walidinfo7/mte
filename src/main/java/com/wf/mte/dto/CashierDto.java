@@ -3,9 +3,11 @@ package com.wf.mte.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wf.mte.entities.Cashier;
 import com.wf.mte.entities.Taking;
-
+@JsonIgnoreProperties(value = {"takings", "state"})
 public class CashierDto {
 
 	private Long id;
